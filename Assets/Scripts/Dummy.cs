@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Dummy : MonoBehaviour
 {
@@ -17,15 +18,16 @@ public class Dummy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Player") && other.CompareTag("Wepon"))
+        if (other.CompareTag("Wepon"))
         {
             ani.Play("Hurt");
-            Invoke("Wait" , 1f);
+            StartCoroutine(Wait());
         }
     }
 
-    void Wait()
+    IEnumerator Wait()
     {
+        yield return new WaitForSeconds(1f);
         ani.Play("Idle");
     }
 }
