@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.VFX;
 
 public class CoolTime : MonoBehaviour
 {
@@ -12,9 +13,10 @@ public class CoolTime : MonoBehaviour
     public Color cooldownColor = new Color(1, 1, 1, 0.7f);
 
     private Dictionary<KeyCode, SkillCooldown> cooldownDict = new Dictionary<KeyCode, SkillCooldown>();
+     
     private Dictionary<KeyCode, bool> isCooldownActive = new Dictionary<KeyCode, bool>();
 
-    private void Awake()
+    void Awake()
     {
         skillSystem = FindAnyObjectByType<SkillSystem>();
     }
