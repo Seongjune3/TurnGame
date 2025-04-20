@@ -54,8 +54,10 @@ public class NinjaCSkill : CoolTime
 
     IEnumerator SkillMove()
     {
+        player.tag = "Invisible";
         smokeVFX.Play();
         yield return new WaitForSeconds(1f);
+        player.tag = "Player";
         player.transform.position += new Vector3(0f, 0f, 5f);
         ani.Play("Knife Shot");
     }

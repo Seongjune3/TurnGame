@@ -8,6 +8,7 @@ TagManager:
   - Dummy
   - NpcObject
   - Wepon
+  - Invisible
   layers:
   - Default
   - TransparentFX
