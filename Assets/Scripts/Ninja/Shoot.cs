@@ -31,7 +31,7 @@ public class Shoot : MonoBehaviour
             MakeSuriken();
             StartCoroutine(ShootingCooldown());
         }
-       
+
     }
 
     IEnumerator ShootingCooldown()
@@ -56,9 +56,9 @@ public class Shoot : MonoBehaviour
             isBoss = true;
             isDummy = false;
         }
-        if (Dummy != null && Vector3.Distance(Dummy.transform.position , FirePos.transform.position) <= 15)
+        if (Dummy != null && Vector3.Distance(Dummy.transform.position, FirePos.transform.position) <= 15)
         {
-            //보스를 바라보게 회전
+            //더미를 바라보게 회전
             Quaternion lookRotation = Quaternion.LookRotation(directionToDummy);
             // 수리검 생성
             Instantiate(Suriken, FirePos.position, lookRotation);

@@ -30,10 +30,21 @@ public class Arrow : MonoBehaviour
         {
             //화살쏘는 지점을 1올림
             Vector3 TargetPos = Boss.transform.position + new Vector3(0, 1, 0);
+            Vector3 DummyTargetPos = Dummy.transform.position + new Vector3(0, 1, 0);
             //화살이 보스에게 가기까지의 거리 계산 (목표 위치 - 내 위치)
             Vector3 direction = TargetPos - transform.position;
-            //거리만큼 이동
-            transform.Translate(direction.normalized * Time.deltaTime * 5, Space.World);
+            Vector3 Dummydirection = DummyTargetPos - transform.position;
+
+            if (Boss != null && Bow.isBoss)
+            {
+                //거리만큼 이동
+                transform.Translate(direction.normalized * Time.deltaTime * 15, Space.World);
+            }
+            if (Dummy != null && Bow.isDummy)
+            {
+                //거리만큼 이동
+                transform.Translate(Dummydirection.normalized * Time.deltaTime * 15, Space.World);
+            }
         }
     }
 
