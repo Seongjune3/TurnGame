@@ -1,4 +1,6 @@
-    using UnityEngine;
+using UnityEngine;
+using UnityEngine.VFX;
+using System.Collections;
 
 public class Arrow : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class Arrow : MonoBehaviour
     public GameObject weponObject;
     public WeponController wepon;
     private int ArrowDmg = 25;
+    public VisualEffect arrowVfx;
 
     void Start()
     {
@@ -16,6 +19,7 @@ public class Arrow : MonoBehaviour
         Dummy = GameObject.FindWithTag("Dummy");
         weponObject = GameObject.FindWithTag("NpcObject");
         wepon = weponObject.GetComponent<WeponController>();
+        arrowVfx = GetComponentInChildren<VisualEffect>();
     }
 
 
@@ -53,14 +57,21 @@ public class Arrow : MonoBehaviour
     {
         if (other.CompareTag("Boss"))
         {
+            SetParentVFX();
             Destroy(gameObject);
             Debug.Log("보스");
             GameManager.Instance.FirstBossHp -= ArrowDmg + wepon.myWepon.data.plusDmg;
         }
         if (other.CompareTag("Dummy"))
         {
+            SetParentVFX();
             Destroy(gameObject);
             Debug.Log("더미");
         }
+    }
+
+    void SetParentVFX()
+    {
+        arrowVfx.transform.SetParent(null); // 부모 분리
     }
 }
