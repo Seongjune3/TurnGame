@@ -9,6 +9,7 @@ public class ArcherWalk : MonoBehaviour
     public Animator Ani;
     private bool isMoving = false;
     public Bow Bow;
+    public bool isSkillPlaying = false;
 
     void Start()
     {
@@ -23,6 +24,8 @@ public class ArcherWalk : MonoBehaviour
 
     void Move()
     {
+        if (isSkillPlaying) return;
+        
         Vector3 moveDirection = Vector3.zero;
         bool isAiming = Bow.isAiming;
 

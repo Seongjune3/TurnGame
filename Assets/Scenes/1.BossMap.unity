@@ -158,6 +158,50 @@ RectTransform:
   m_AnchoredPosition: {x: -12.1544, y: -137.8391}
   m_SizeDelta: {x: 98.3374, y: 71.6352}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &7560569 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1954671140932193790, guid: 0e1262468a5aa26438fed0a27ea5819e, type: 3}
+  m_PrefabInstance: {fileID: 1241290766}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &7560571
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7560569}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.27814567
+  m_Height: 1.0423855
+  m_Direction: 1
+  m_Center: {x: -0.021909943, y: 0.18927045, z: 0.07044263}
+--- !u!114 &7560572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7560569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f45324254c96644694641a70b9dd648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ani: {fileID: 1423744925}
+  skillSystem: {fileID: 0}
+  cooldownColor: {r: 1, g: 1, b: 1, a: 0.7}
+  isUseSkill: 0
 --- !u!1 &21682655
 GameObject:
   m_ObjectHideFlags: 0
@@ -11896,6 +11940,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1954671140932193790, guid: 0e1262468a5aa26438fed0a27ea5819e, type: 3}
+      propertyPath: m_TagString
+      value: Wepon
+      objectReference: {fileID: 0}
     - target: {fileID: 6070334272878009831, guid: 0e1262468a5aa26438fed0a27ea5819e, type: 3}
       propertyPath: m_Name
       value: Archer
@@ -11951,7 +11999,19 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6070334272878009831, guid: 0e1262468a5aa26438fed0a27ea5819e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1423744928}
+    - targetCorrespondingSourceObject: {fileID: 6070334272878009831, guid: 0e1262468a5aa26438fed0a27ea5819e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1423744927}
+    - targetCorrespondingSourceObject: {fileID: 1954671140932193790, guid: 0e1262468a5aa26438fed0a27ea5819e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7560572}
+    - targetCorrespondingSourceObject: {fileID: 1954671140932193790, guid: 0e1262468a5aa26438fed0a27ea5819e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7560571}
   m_SourcePrefab: {fileID: 100100000, guid: 0e1262468a5aa26438fed0a27ea5819e, type: 3}
 --- !u!1001 &1255607378
 PrefabInstance:
@@ -13704,6 +13764,58 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4694350218193332, guid: 16ecce9cc728dbf4284b95589f19b796, type: 3}
   m_PrefabInstance: {fileID: 612507821}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1423744919 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6070334272878009831, guid: 0e1262468a5aa26438fed0a27ea5819e, type: 3}
+  m_PrefabInstance: {fileID: 1241290766}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1423744924 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8471524575114930665, guid: 0e1262468a5aa26438fed0a27ea5819e, type: 3}
+  m_PrefabInstance: {fileID: 1241290766}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423744919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b67c3c786b840c141bb3fe205a7ab845, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &1423744925 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8498224839025445395, guid: 0e1262468a5aa26438fed0a27ea5819e, type: 3}
+  m_PrefabInstance: {fileID: 1241290766}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1423744927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423744919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3126929801ec0004dae458370890ff8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ani: {fileID: 1423744925}
+  skillSystem: {fileID: 0}
+  cooldownColor: {r: 1, g: 1, b: 1, a: 0.7}
+  bow: {fileID: 1423744924}
+--- !u!114 &1423744928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423744919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4385dbccd5976d64ca194889b1e716e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ani: {fileID: 1423744925}
+  skillSystem: {fileID: 0}
+  cooldownColor: {r: 1, g: 1, b: 1, a: 0.7}
 --- !u!1 &1431815991
 GameObject:
   m_ObjectHideFlags: 0
@@ -18324,12 +18436,12 @@ MonoBehaviour:
   - key: 113
     cooldownOverlay: {fileID: 1089837225}
     cooldownText: {fileID: 2042793792}
-    cooldownTime: 5
+    cooldownTime: 10
     text: {fileID: 1604648683}
   - key: 122
     cooldownOverlay: {fileID: 538528849}
     cooldownText: {fileID: 516012782}
-    cooldownTime: 10
+    cooldownTime: 15
     text: {fileID: 1934424108}
   - key: 120
     cooldownOverlay: {fileID: 565408329}

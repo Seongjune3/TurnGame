@@ -8,8 +8,8 @@ public class Bow : MonoBehaviour
 {
     public GameObject Arrows;
     public Transform FirePos;
-    private GameObject Boss;
-    private GameObject Dummy;
+    public GameObject Boss;
+    public GameObject Dummy;
     public ArcherWalk ArcherWalk;
     public bool isAiming = false;
     public bool shoted = false;
@@ -64,50 +64,47 @@ public class Bow : MonoBehaviour
 
     void MakeArrow()
     {
-        if (Boss != null && !shoted)
+        //보스까지의 거리 계산
+        Vector3 directionToBoss = (Boss.transform.position - FirePos.position).normalized;
+        Vector3 directionToDummy = (Dummy.transform.position - FirePos.position).normalized;
+        if (!shoted && Vector3.Distance(Boss.transform.position, FirePos.transform.position) <= 25)
         {
-            //보스까지의 거리 계산
-            Vector3 directionToBoss = (Boss.transform.position - FirePos.position).normalized;
-            Vector3 directionToDummy = (Dummy.transform.position - FirePos.position).normalized;
-            if (!shoted && Vector3.Distance(Boss.transform.position, FirePos.transform.position) <= 25)
-            {
-                //보스를 바라보게 회전
-                Quaternion lookRotation = Quaternion.LookRotation(directionToBoss);
+            //보스를 바라보게 회전
+            Quaternion lookRotation = Quaternion.LookRotation(directionToBoss);
 
-                //회전값 보정
-                Quaternion arrowRotationOffset = Quaternion.Euler(ArrowRotation);
+            //회전값 보정
+            Quaternion arrowRotationOffset = Quaternion.Euler(ArrowRotation);
 
-                //보스를 바라보게 한 회전값 * 보정한 회전값
-                Quaternion finalRotation = lookRotation * arrowRotationOffset;
+            //보스를 바라보게 한 회전값 * 보정한 회전값
+            Quaternion finalRotation = lookRotation * arrowRotationOffset;
 
-                //화살 생성
-                Instantiate(Arrows, FirePos.position, finalRotation);
-                isBoss = true;
-                isDummy = false;
+            //화살 생성
+            Instantiate(Arrows, FirePos.position, finalRotation);
+            isBoss = true;
+            isDummy = false;
 
-                //화살 연사 못하게 0.5초 쿨타임
-                StartCoroutine(WaitArrow());
-            }
+            //화살 연사 못하게 0.5초 쿨타임
+            StartCoroutine(WaitArrow());
+        }
 
-            if (!shoted && Vector3.Distance(Dummy.transform.position, FirePos.transform.position) <= 25)
-            {
-                //더미를 바라보게 회전
-                Quaternion lookRotation = Quaternion.LookRotation(directionToDummy);
+        if (!shoted && Vector3.Distance(Dummy.transform.position, FirePos.transform.position) <= 25)
+        {
+            //더미를 바라보게 회전
+            Quaternion lookRotation = Quaternion.LookRotation(directionToDummy);
 
-                //회전값 보정
-                Quaternion arrowRotationOffset = Quaternion.Euler(ArrowRotation);
+            //회전값 보정
+            Quaternion arrowRotationOffset = Quaternion.Euler(ArrowRotation);
 
-                //더미를 바라보게 한 회전값 * 보정한 회전값
-                Quaternion finalRotation = lookRotation * arrowRotationOffset;
+            //더미를 바라보게 한 회전값 * 보정한 회전값
+            Quaternion finalRotation = lookRotation * arrowRotationOffset;
 
-                //화살 생성
-                Instantiate(Arrows, FirePos.position, finalRotation);
-                isBoss = false;
-                isDummy = true;
+            //화살 생성
+            Instantiate(Arrows, FirePos.position, finalRotation);
+            isBoss = false;
+            isDummy = true;
 
-                //화살 연사 못하게 1초 쿨타임
-                StartCoroutine(WaitArrow());
-            }
+            //화살 연사 못하게 1초 쿨타임
+            StartCoroutine(WaitArrow());
         }
     }
 
