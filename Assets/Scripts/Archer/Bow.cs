@@ -7,6 +7,7 @@ using UnityEngine.ProBuilder;
 public class Bow : MonoBehaviour
 {
     public GameObject Arrows;
+    public GameObject FireArrows;
     public Transform FirePos;
     public GameObject Boss;
     public GameObject Dummy;

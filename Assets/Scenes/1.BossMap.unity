@@ -11996,6 +11996,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8471524575114930665, guid: 0e1262468a5aa26438fed0a27ea5819e, type: 3}
+      propertyPath: FireArrows
+      value: 
+      objectReference: {fileID: 2916796689393833821, guid: 308c0a1fd3d46624e8aaa670c7e79848, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12006,6 +12010,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6070334272878009831, guid: 0e1262468a5aa26438fed0a27ea5819e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1423744927}
+    - targetCorrespondingSourceObject: {fileID: 6070334272878009831, guid: 0e1262468a5aa26438fed0a27ea5819e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1423744934}
+    - targetCorrespondingSourceObject: {fileID: 6070334272878009831, guid: 0e1262468a5aa26438fed0a27ea5819e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1423744935}
     - targetCorrespondingSourceObject: {fileID: 1954671140932193790, guid: 0e1262468a5aa26438fed0a27ea5819e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7560572}
@@ -13816,6 +13826,38 @@ MonoBehaviour:
   ani: {fileID: 1423744925}
   skillSystem: {fileID: 0}
   cooldownColor: {r: 1, g: 1, b: 1, a: 0.7}
+--- !u!114 &1423744934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423744919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30ddf89613a95314b8d751577baf3c41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ani: {fileID: 1423744925}
+  skillSystem: {fileID: 0}
+  cooldownColor: {r: 1, g: 1, b: 1, a: 0.7}
+  bow: {fileID: 1423744924}
+--- !u!114 &1423744935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423744919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d99e3ad888ae04d40802690881d661d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ani: {fileID: 1423744925}
+  skillSystem: {fileID: 0}
+  cooldownColor: {r: 1, g: 1, b: 1, a: 0.7}
+  isUseSkill: 0
 --- !u!1 &1431815991
 GameObject:
   m_ObjectHideFlags: 0
