@@ -11,6 +11,7 @@ public class PaladinWalk : MonoBehaviour
     public Block Block;
     public bool isAttacking = false;
     private bool isMoving = false;
+    public bool isSkillPlaying = false;
 
     private Dictionary<Vector3, string> animationMap = new Dictionary<Vector3, string>();
     // Dictionary<변수 , 변수> 변수 이름 
@@ -38,11 +39,9 @@ public class PaladinWalk : MonoBehaviour
 
     void Update()
     {
-        if (isAttacking)
-        {
-            return;
-        }
-
+        if (isSkillPlaying) return;
+        if (isAttacking) return;
+        
         if (Input.GetMouseButtonDown(0))
         {
             StartCoroutine(Attack());
