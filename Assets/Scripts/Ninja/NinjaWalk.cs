@@ -10,7 +10,6 @@ public class NinjaWalk : MonoBehaviour
     bool isMoving = false;
     public Shoot Shoot;
     private Dictionary<Vector3, string> animationMap = new Dictionary<Vector3, string>();
-    public bool isSkillPlaying = false;
 
     void Start()
     {
@@ -35,7 +34,7 @@ public class NinjaWalk : MonoBehaviour
 
     void Move()
     {
-        if (isSkillPlaying) return;
+        if (GameManager.Instance.isSkillPlaying) return;
 
         Vector3 moveDirection = Vector3.zero;
 

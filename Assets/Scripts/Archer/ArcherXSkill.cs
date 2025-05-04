@@ -8,9 +8,9 @@ public class ArcherXSkill : CoolTime
     bool isCoolTime = false;
     protected override void UseSkill(SkillCooldown skill)
     {
-        if (skill.key == KeyCode.X && !isCoolTime)
+        if (skill.key == KeyCode.X && !isCoolTime && !GameManager.Instance.isSkillPlaying)
         {
-            FindAnyObjectByType<ArcherWalk>().isSkillPlaying = true;
+            GameManager.Instance.isSkillPlaying = true;
             FindAnyObjectByType<ArcherWalk>().Speed += 3;
             FindAnyObjectByType<ArcherWalk>().DiagonalSpeed += 3;
             StartCoroutine(SkillCoolDown());
@@ -29,10 +29,10 @@ public class ArcherXSkill : CoolTime
     IEnumerator ChangeSpeed()
     {
         isUseSkill = true;
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(1f);
         isUseSkill = false;
-        FindAnyObjectByType<ArcherWalk>().isSkillPlaying = false;
-        yield return new WaitForSeconds(8f);
+        GameManager.Instance.isSkillPlaying = false;
+        yield return new WaitForSeconds(10f);
         FindAnyObjectByType<ArcherWalk>().Speed -= 3;
         FindAnyObjectByType<ArcherWalk>().DiagonalSpeed -= 3;
     }

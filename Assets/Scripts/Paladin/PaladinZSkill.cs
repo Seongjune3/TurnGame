@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class NinjaZSkill : CoolTime
+public class PaladinZSkill : CoolTime
 {
     [SerializeField]
     bool isUseSkill = false;
@@ -14,7 +14,7 @@ public class NinjaZSkill : CoolTime
             GameManager.Instance.isSkillPlaying = true;
             StartCoroutine(SkillCoolDown());
             StartCoroutine(ChangeBool());
-            ani.Play("Knife Attack");
+            ani.Play("Sword Attack");
         }
     }
 

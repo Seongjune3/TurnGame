@@ -13,9 +13,9 @@ public class NinjaCSkill : CoolTime
 
     protected override void UseSkill(SkillCooldown skill)
     {
-        if (skill.key == KeyCode.C && !isCoolTime)
+        if (skill.key == KeyCode.C && !isCoolTime && !GameManager.Instance.isSkillPlaying)
         {
-            FindAnyObjectByType<NinjaWalk>().isSkillPlaying = true;
+            GameManager.Instance.isSkillPlaying = true;
             StartCoroutine(SkillCoolDown());
             StartCoroutine(ChangeBool());
             StartCoroutine(SkillMove());
@@ -47,7 +47,7 @@ public class NinjaCSkill : CoolTime
     {
         isUseSkill = true;
         yield return new WaitForSeconds(2.5f);
-        FindAnyObjectByType<NinjaWalk>().isSkillPlaying = false;
+        GameManager.Instance.isSkillPlaying = false;
         isUseSkill = false;
         isHited = false;
     }

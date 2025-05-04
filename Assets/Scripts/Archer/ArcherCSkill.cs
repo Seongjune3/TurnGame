@@ -9,7 +9,7 @@ public class ArcherCSkill : CoolTime
 
     protected override void UseSkill(SkillCooldown skill)
     {
-        if (skill.key == KeyCode.C && !isCoolTime)
+        if (skill.key == KeyCode.C && !isCoolTime && !GameManager.Instance.isSkillPlaying)
         {
             if (Vector3.Distance(bow.Boss.transform.position, bow.FirePos.transform.position) > 25 && GameManager.Instance.PlayerIsComming)
             {
@@ -19,7 +19,7 @@ public class ArcherCSkill : CoolTime
             {
                 return;
             }
-            FindAnyObjectByType<ArcherWalk>().isSkillPlaying = true;
+            GameManager.Instance.isSkillPlaying = true;
             MakeArrows();
             StartCoroutine(SkillCoolDown());
             StartCoroutine(ChangeBool());
@@ -37,7 +37,7 @@ public class ArcherCSkill : CoolTime
     IEnumerator ChangeBool()
     {
         yield return new WaitForSeconds(0.7f);
-        FindAnyObjectByType<ArcherWalk>().isSkillPlaying = false;
+        GameManager.Instance.isSkillPlaying = false;
     }
 
     void MakeArrows()

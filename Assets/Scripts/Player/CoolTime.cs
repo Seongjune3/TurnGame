@@ -35,7 +35,7 @@ public class CoolTime : MonoBehaviour
     {   
         foreach (var skill in skillSystem.skillCooldowns)
         {
-            if (Input.GetKeyDown(skill.key) && !isCooldownActive[skill.key])
+            if (Input.GetKeyDown(skill.key) && !isCooldownActive[skill.key] && !GameManager.Instance.isSkillPlaying)
             {
                 UseSkill(skill);
                 StartCoroutine(CooldownEffect(skill , skill.cooldownTime));

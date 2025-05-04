@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     public bool PlayPaladin = false;
     public bool PlayNinja = false;
 
+    public bool isSkillPlaying = false;
 
     public bool PlayerIsJumping = false;
     public bool PlayerIsComming = false;

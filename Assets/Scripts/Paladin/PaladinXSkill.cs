@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class NinjaXSkill : CoolTime
+public class PaladinXSkill : CoolTime
 {
     [SerializeField]
     bool isUseSkill = false;
@@ -11,11 +11,11 @@ public class NinjaXSkill : CoolTime
         if (skill.key == KeyCode.X && !isCoolTime && !GameManager.Instance.isSkillPlaying)
         {
             GameManager.Instance.isSkillPlaying = true;
-            FindAnyObjectByType<NinjaWalk>().Speed += 3;
-            FindAnyObjectByType<NinjaWalk>().DiagonalSpeed += 3;
+            FindAnyObjectByType<PaladinWalk>().Speed += 3;
+            FindAnyObjectByType<PaladinWalk>().DiagonalSpeed += 3;
             StartCoroutine(SkillCoolDown());
             StartCoroutine(ChangeSpeed());
-            ani.Play("Buff Skill");
+            ani.Play("Paladin Buff");
         }
     }
 
@@ -33,7 +33,7 @@ public class NinjaXSkill : CoolTime
         isUseSkill = false;
         GameManager.Instance.isSkillPlaying = false;
         yield return new WaitForSeconds(10f);
-        FindAnyObjectByType<NinjaWalk>().Speed -= 3;
-        FindAnyObjectByType<NinjaWalk>().DiagonalSpeed -= 3;
+        FindAnyObjectByType<PaladinWalk>().Speed -= 3;
+        FindAnyObjectByType<PaladinWalk>().DiagonalSpeed -= 3;
     }
 }

@@ -9,9 +9,9 @@ public class ArcherQSkill : CoolTime
 
     protected override void UseSkill(SkillCooldown skill)
     {
-        if (skill.key == KeyCode.Q && !isCoolTime)
+        if (skill.key == KeyCode.Q && !isCoolTime && !GameManager.Instance.isSkillPlaying)
         {
-            FindAnyObjectByType<ArcherWalk>().isSkillPlaying = true;
+            GameManager.Instance.isSkillPlaying = true;
             StartCoroutine(SkillCoolDown());
             StartCoroutine(ChangeBool());
             ani.Play("Kick");
@@ -41,7 +41,7 @@ public class ArcherQSkill : CoolTime
     {
         isUseSkill = true;
         yield return new WaitForSeconds(1.5f);
-        FindAnyObjectByType<ArcherWalk>().isSkillPlaying = false;
+        GameManager.Instance.isSkillPlaying = false;
         isUseSkill = false;
     }
 }

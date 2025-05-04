@@ -8,9 +8,9 @@ public class NinjaQSkill : CoolTime
     bool isCoolTime = false; 
     protected override void UseSkill(SkillCooldown skill)
     {
-        if (skill.key == KeyCode.Q && !isCoolTime)
+        if (skill.key == KeyCode.Q && !isCoolTime && !GameManager.Instance.isSkillPlaying)
         {
-            FindAnyObjectByType<NinjaWalk>().isSkillPlaying = true;
+            GameManager.Instance.isSkillPlaying = true;
             StartCoroutine(SkillCoolDown());
             StartCoroutine(ChangeBool());
             ani.Play("Kick");
@@ -40,7 +40,7 @@ public class NinjaQSkill : CoolTime
     {
         isUseSkill = true;
         yield return new WaitForSeconds(1.5f);
-        FindAnyObjectByType<NinjaWalk>().isSkillPlaying = false;
+        GameManager.Instance.isSkillPlaying = false;
         isUseSkill = false;
     }
 }
