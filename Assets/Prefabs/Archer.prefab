@@ -271,6 +271,12 @@ PrefabInstance:
       addedObject: {fileID: 6839001657087354181}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 60dfec01fc2a71348b8b1e8bebaa8c78, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 8000327566949067093}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 60dfec01fc2a71348b8b1e8bebaa8c78, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2929693833046698690}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 60dfec01fc2a71348b8b1e8bebaa8c78, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1509854122605256436}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 60dfec01fc2a71348b8b1e8bebaa8c78, type: 3}
       insertIndex: -1
@@ -449,7 +455,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6070334272878009831}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 852319f949ad64c47a5c65db83871b1c, type: 3}
   m_Name: 
@@ -458,7 +464,35 @@ MonoBehaviour:
   DiagonalSpeed: 7
   Ani: {fileID: 8498224839025445395}
   Bow: {fileID: 8471524575114930665}
-  isSkillPlaying: 0
+--- !u!114 &8000327566949067093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6070334272878009831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d75b7ec52ab64047ba7a101197cae3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 5
+  Ani: {fileID: 8498224839025445395}
+  Bow: {fileID: 8471524575114930665}
+--- !u!114 &2929693833046698690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6070334272878009831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb82921aa5a58ae43b76e0928cb73bd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  archerWalk: {fileID: 6839001657087354181}
+  archerNomalWalk: {fileID: 8000327566949067093}
 --- !u!114 &1509854122605256436
 MonoBehaviour:
   m_ObjectHideFlags: 0

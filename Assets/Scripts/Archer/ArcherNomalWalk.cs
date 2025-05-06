@@ -1,12 +1,10 @@
 using UnityEngine;
-using System.Collections;
 
-public class Test : MonoBehaviour
+public class ArcherNomalWalk : MonoBehaviour
 {
     public int Speed;
     public Animator Ani;
-    public Block Block;
-    public bool isAttacking = false;
+    public Bow Bow;
     private bool isMoving = false;
 
     void Start()
@@ -16,24 +14,7 @@ public class Test : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.isSkillPlaying || isAttacking) return;
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            StartCoroutine(Attack());
-            return;
-        }
-
-        if (Input.GetMouseButton(1))
-        {
-            UseBlockNow();
-            return;
-        }
-
-        if (Input.GetMouseButtonUp(1))
-        {
-            Block.isBlocking = false;
-        }
+        if (GameManager.Instance.isSkillPlaying) return;
 
         Move();
         CheckKeyboard();
@@ -43,6 +24,7 @@ public class Test : MonoBehaviour
     {
         Vector3 inputDirection = Vector3.zero;
         bool isMovingBackward = false;
+        bool isAiming = Bow.isAiming;
 
         if (Input.GetKey(KeyCode.W)) inputDirection += Vector3.forward;
         if (Input.GetKey(KeyCode.S)) { inputDirection += Vector3.back; isMovingBackward = true; }
@@ -51,7 +33,7 @@ public class Test : MonoBehaviour
 
         inputDirection = inputDirection.normalized;
 
-        if (inputDirection != Vector3.zero && !Block.isBlocking)
+        if (inputDirection != Vector3.zero)
         {
             Vector3 camForward = Camera.main.transform.forward;
             Vector3 camRight = Camera.main.transform.right;
@@ -60,18 +42,23 @@ public class Test : MonoBehaviour
 
             Vector3 moveDir = camForward * inputDirection.z + camRight * inputDirection.x;
 
+            // 이동 중일 때 회전 (뒤로 이동 제외)
             if (!isMovingBackward)
             {
                 Quaternion toRotation = Quaternion.LookRotation(moveDir);
-                transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, Time.deltaTime * 10f);
+                transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, Time.deltaTime * 5f);
             }
 
             transform.Translate(moveDir.normalized * Speed * Time.deltaTime, Space.World);
-            Ani.Play(isMovingBackward ? "Walk Back" : "Walk Forward");
+
+            // 애니메이션
+            string animPrefix = isAiming ? "Aim Walk" : "Walk";
+            string animName = isMovingBackward ? animPrefix + " Back" : animPrefix + " Forward";
+            Ani.Play(animName);
 
             isMoving = true;
         }
-        else if (!isMoving && !Block.isBlocking)
+        else if (!isMoving && !isAiming)
         {
             Ani.Play("Idle");
         }
@@ -84,30 +71,5 @@ public class Test : MonoBehaviour
         {
             isMoving = false;
         }
-    }
-
-    void UseBlockNow()
-    {
-        if (isAttacking) return;
-
-        if (Input.GetMouseButton(1) && !Block.isBlocking)
-        {
-            Ani.Play("Block");
-            Block.isBlocking = true;
-        }
-        else if (Input.GetMouseButtonUp(1) && Block.isBlocking)
-        {
-            Block.isBlocking = false;
-        }
-    }
-
-    IEnumerator Attack()
-    {
-        if (Block.isBlocking) yield break;
-
-        Ani.Play("Attack");
-        isAttacking = true;
-        yield return new WaitForSeconds(1.5f);
-        isAttacking = false;
     }
 }

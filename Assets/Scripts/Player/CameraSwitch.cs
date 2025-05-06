@@ -4,8 +4,14 @@ public class CameraSwitcher : MonoBehaviour
 {
     public PlayerCamera playerCamera;  // 평소 카메라
     public CameraLock actionCamera;  // 액션 모드 카메라
+    private Quaternion cameraRotation;
 
     private bool isActionMode = false;
+
+    void Start()
+    {
+        cameraRotation = transform.rotation;
+    }
 
     void Update()
     {
@@ -24,6 +30,7 @@ public class CameraSwitcher : MonoBehaviour
                 playerCamera.enabled = true;   // 평소 카메라 켜기
                 actionCamera.enabled = false;  // 액션 모드 끄기
                 Cursor.lockState = CursorLockMode.None;  // 마우스 커서 다시 보이게
+                transform.rotation = cameraRotation;
             }
         }
     }

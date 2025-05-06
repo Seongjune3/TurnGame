@@ -13,6 +13,7 @@ public class NinjaXSkill : CoolTime
             GameManager.Instance.isSkillPlaying = true;
             FindAnyObjectByType<NinjaWalk>().Speed += 3;
             FindAnyObjectByType<NinjaWalk>().DiagonalSpeed += 3;
+            FindAnyObjectByType<NinjaNomalWalk>().Speed += 3;
             StartCoroutine(SkillCoolDown());
             StartCoroutine(ChangeSpeed());
             ani.Play("Buff Skill");
@@ -35,5 +36,6 @@ public class NinjaXSkill : CoolTime
         yield return new WaitForSeconds(10f);
         FindAnyObjectByType<NinjaWalk>().Speed -= 3;
         FindAnyObjectByType<NinjaWalk>().DiagonalSpeed -= 3;
+        FindAnyObjectByType<NinjaNomalWalk>().Speed -= 3;
     }
 }

@@ -58,7 +58,7 @@ public class NinjaCSkill : CoolTime
         smokeVFX.Play();
         yield return new WaitForSeconds(1f);
         player.tag = "Player";
-        player.transform.position += new Vector3(0f, 0f, 5f);
+        player.transform.position += player.transform.forward * 5;
         ani.Play("Knife Shot");
     }
 }

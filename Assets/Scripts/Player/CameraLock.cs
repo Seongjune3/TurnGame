@@ -7,7 +7,7 @@ public class CameraLock : MonoBehaviour
     public float distance = 5.0f;  // 캐릭터와의 거리
     public float height = 1.5f;  // 카메라 높이
     public float sensitivity = 3.0f;  // 마우스 감도
-    
+
 
     private float currentX = 0f;  // X축 회전값
     private float currentY = 0f;  // Y축 회전값

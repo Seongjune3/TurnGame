@@ -1,11 +1,10 @@
 using UnityEngine;
-using System.Collections;
 
-public class Test : MonoBehaviour
+
+public class NinjaNomalWalk : MonoBehaviour
 {
     public int Speed;
     public Animator Ani;
-    public Block Block;
     public bool isAttacking = false;
     private bool isMoving = false;
 
@@ -17,24 +16,6 @@ public class Test : MonoBehaviour
     void Update()
     {
         if (GameManager.Instance.isSkillPlaying || isAttacking) return;
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            StartCoroutine(Attack());
-            return;
-        }
-
-        if (Input.GetMouseButton(1))
-        {
-            UseBlockNow();
-            return;
-        }
-
-        if (Input.GetMouseButtonUp(1))
-        {
-            Block.isBlocking = false;
-        }
-
         Move();
         CheckKeyboard();
     }
@@ -51,7 +32,7 @@ public class Test : MonoBehaviour
 
         inputDirection = inputDirection.normalized;
 
-        if (inputDirection != Vector3.zero && !Block.isBlocking)
+        if (inputDirection != Vector3.zero)
         {
             Vector3 camForward = Camera.main.transform.forward;
             Vector3 camRight = Camera.main.transform.right;
@@ -63,7 +44,7 @@ public class Test : MonoBehaviour
             if (!isMovingBackward)
             {
                 Quaternion toRotation = Quaternion.LookRotation(moveDir);
-                transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, Time.deltaTime * 10f);
+                transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, Time.deltaTime * 5f);
             }
 
             transform.Translate(moveDir.normalized * Speed * Time.deltaTime, Space.World);
@@ -71,7 +52,7 @@ public class Test : MonoBehaviour
 
             isMoving = true;
         }
-        else if (!isMoving && !Block.isBlocking)
+        else if (!isMoving)
         {
             Ani.Play("Idle");
         }
@@ -84,30 +65,5 @@ public class Test : MonoBehaviour
         {
             isMoving = false;
         }
-    }
-
-    void UseBlockNow()
-    {
-        if (isAttacking) return;
-
-        if (Input.GetMouseButton(1) && !Block.isBlocking)
-        {
-            Ani.Play("Block");
-            Block.isBlocking = true;
-        }
-        else if (Input.GetMouseButtonUp(1) && Block.isBlocking)
-        {
-            Block.isBlocking = false;
-        }
-    }
-
-    IEnumerator Attack()
-    {
-        if (Block.isBlocking) yield break;
-
-        Ani.Play("Attack");
-        isAttacking = true;
-        yield return new WaitForSeconds(1.5f);
-        isAttacking = false;
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Test : MonoBehaviour
+public class PaladinNomalWalk : MonoBehaviour
 {
     public int Speed;
     public Animator Ani;
@@ -63,7 +63,7 @@ public class Test : MonoBehaviour
             if (!isMovingBackward)
             {
                 Quaternion toRotation = Quaternion.LookRotation(moveDir);
-                transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, Time.deltaTime * 10f);
+                transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, Time.deltaTime * 5f);
             }
 
             transform.Translate(moveDir.normalized * Speed * Time.deltaTime, Space.World);

@@ -802,6 +802,12 @@ PrefabInstance:
       addedObject: {fileID: 4647563132155383946}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0cd56fdb3d1f6c6418d75769a54db5af, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 511457624561487174}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0cd56fdb3d1f6c6418d75769a54db5af, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7692200531165952405}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0cd56fdb3d1f6c6418d75769a54db5af, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 3797286502757123099}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0cd56fdb3d1f6c6418d75769a54db5af, type: 3}
       insertIndex: -1
@@ -911,16 +917,44 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5902568464327591617}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57f7b9ff06f614c41a83d0b7be04c4ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 6
+  Speed: 5
   DiagonalSpeed: 7
   Ani: {fileID: 3237275517753900256}
   Shoot: {fileID: 3797286502757123099}
-  isSkillPlaying: 0
+--- !u!114 &511457624561487174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5902568464327591617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 746d85aa40b99a047a79796ff8ef212c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 5
+  Ani: {fileID: 3237275517753900256}
+  isAttacking: 0
+--- !u!114 &7692200531165952405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5902568464327591617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cbf6e1d94b7c754bbe4b14937e3df2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ninjaWalk: {fileID: 4647563132155383946}
+  ninjaNomalWalk: {fileID: 511457624561487174}
 --- !u!114 &3797286502757123099
 MonoBehaviour:
   m_ObjectHideFlags: 0

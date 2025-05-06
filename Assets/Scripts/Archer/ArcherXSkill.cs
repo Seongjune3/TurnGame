@@ -13,6 +13,7 @@ public class ArcherXSkill : CoolTime
             GameManager.Instance.isSkillPlaying = true;
             FindAnyObjectByType<ArcherWalk>().Speed += 3;
             FindAnyObjectByType<ArcherWalk>().DiagonalSpeed += 3;
+            FindAnyObjectByType<ArcherNomalWalk>().Speed += 3;
             StartCoroutine(SkillCoolDown());
             StartCoroutine(ChangeSpeed());
             ani.Play("Archer Buff");
@@ -35,5 +36,6 @@ public class ArcherXSkill : CoolTime
         yield return new WaitForSeconds(10f);
         FindAnyObjectByType<ArcherWalk>().Speed -= 3;
         FindAnyObjectByType<ArcherWalk>().DiagonalSpeed -= 3;
+        FindAnyObjectByType<ArcherNomalWalk>().Speed -= 3;
     }
 }

@@ -13,6 +13,7 @@ public class PaladinXSkill : CoolTime
             GameManager.Instance.isSkillPlaying = true;
             FindAnyObjectByType<PaladinWalk>().Speed += 3;
             FindAnyObjectByType<PaladinWalk>().DiagonalSpeed += 3;
+            FindAnyObjectByType<PaladinNomalWalk>().Speed += 3;
             StartCoroutine(SkillCoolDown());
             StartCoroutine(ChangeSpeed());
             ani.Play("Paladin Buff");
@@ -35,5 +36,6 @@ public class PaladinXSkill : CoolTime
         yield return new WaitForSeconds(10f);
         FindAnyObjectByType<PaladinWalk>().Speed -= 3;
         FindAnyObjectByType<PaladinWalk>().DiagonalSpeed -= 3;
+        FindAnyObjectByType<PaladinNomalWalk>().Speed -= 3;
     }
 }
