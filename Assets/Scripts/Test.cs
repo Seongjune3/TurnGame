@@ -1,113 +1,60 @@
 using UnityEngine;
-using System.Collections;
 
 public class Test : MonoBehaviour
 {
-    public int Speed;
-    public Animator Ani;
-    public Block Block;
-    public bool isAttacking = false;
-    private bool isMoving = false;
+    [SerializeField] /////////////// 락온 코드
+    private Transform target;
+    [SerializeField]
+    private Vector3 offset = new Vector3(0, 3, -10);
+    [SerializeField]
+    private Transform dummyTarget;
+
+    private bool Locking = false;
 
     void Start()
     {
-        Ani = GetComponent<Animator>();
+        GameObject player = GameObject.FindWithTag("Player");
+        GameObject dummy = GameObject.FindWithTag("Dummy");
+
+        if (player != null)
+        {
+            target = player.transform;
+        }
+
+        if (dummy != null)
+        {
+            dummyTarget = dummy.transform;
+        }
     }
+
 
     void Update()
     {
-        if (GameManager.Instance.isSkillPlaying || isAttacking) return;
-
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
-            StartCoroutine(Attack());
-            return;
+            Locking = !Locking;
         }
-
-        if (Input.GetMouseButton(1))
-        {
-            UseBlockNow();
-            return;
-        }
-
-        if (Input.GetMouseButtonUp(1))
-        {
-            Block.isBlocking = false;
-        }
-
-        Move();
-        CheckKeyboard();
     }
 
-    void Move()
+    void LateUpdate()
     {
-        Vector3 inputDirection = Vector3.zero;
-        bool isMovingBackward = false;
-
-        if (Input.GetKey(KeyCode.W)) inputDirection += Vector3.forward;
-        if (Input.GetKey(KeyCode.S)) { inputDirection += Vector3.back; isMovingBackward = true; }
-        if (Input.GetKey(KeyCode.A)) inputDirection += Vector3.left;
-        if (Input.GetKey(KeyCode.D)) inputDirection += Vector3.right;
-
-        inputDirection = inputDirection.normalized;
-
-        if (inputDirection != Vector3.zero && !Block.isBlocking)
+        if (target != null)
         {
-            Vector3 camForward = Camera.main.transform.forward;
-            Vector3 camRight = Camera.main.transform.right;
-            camForward.y = 0; camRight.y = 0;
-            camForward.Normalize(); camRight.Normalize();
-
-            Vector3 moveDir = camForward * inputDirection.z + camRight * inputDirection.x;
-
-            if (!isMovingBackward)
+            if (Locking && dummyTarget != null && !GameManager.Instance.PlayerIsComming)
             {
-                Quaternion toRotation = Quaternion.LookRotation(moveDir);
-                transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, Time.deltaTime * 10f);
+                Vector3 lockOnDirection = (dummyTarget.position - target.position).normalized;
+                Vector3 lockOnPosition = target.position - lockOnDirection * offset.magnitude + Vector3.up * offset.y;
+                transform.position = Vector3.Lerp(transform.position, lockOnPosition, Time.deltaTime * 2f);
+
+
+                Quaternion lookRotation = Quaternion.LookRotation(dummyTarget.position - transform.position);
+                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 2f);
             }
-
-            transform.Translate(moveDir.normalized * Speed * Time.deltaTime, Space.World);
-            Ani.Play(isMovingBackward ? "Walk Back" : "Walk Forward");
-
-            isMoving = true;
+            else
+            {
+                transform.position = target.position + offset;
+                transform.LookAt(target.position + Vector3.up * 1.5f);
+            }
         }
-        else if (!isMoving && !Block.isBlocking)
-        {
-            Ani.Play("Idle");
-        }
-    }
-
-    void CheckKeyboard()
-    {
-        if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) &&
-            !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
-        {
-            isMoving = false;
-        }
-    }
-
-    void UseBlockNow()
-    {
-        if (isAttacking) return;
-
-        if (Input.GetMouseButton(1) && !Block.isBlocking)
-        {
-            Ani.Play("Block");
-            Block.isBlocking = true;
-        }
-        else if (Input.GetMouseButtonUp(1) && Block.isBlocking)
-        {
-            Block.isBlocking = false;
-        }
-    }
-
-    IEnumerator Attack()
-    {
-        if (Block.isBlocking) yield break;
-
-        Ani.Play("Attack");
-        isAttacking = true;
-        yield return new WaitForSeconds(1.5f);
-        isAttacking = false;
     }
 }
