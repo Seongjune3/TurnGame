@@ -10,6 +10,8 @@ public class NinjaCSkill : CoolTime
     bool isHited = false;
     public GameObject player;
     public VisualEffect smokeVFX;
+    public GameObject objectToSpawn;
+    public float spawnDistance = 2f;
 
     protected override void UseSkill(SkillCooldown skill)
     {
@@ -58,7 +60,30 @@ public class NinjaCSkill : CoolTime
         smokeVFX.Play();
         yield return new WaitForSeconds(1f);
         player.tag = "Player";
-        player.transform.position += player.transform.forward * 5;
+        SpawnBlackNinja();
         ani.Play("Knife Shot");
+    }
+
+    void SpawnBlackNinja()
+    {
+        // 왼쪽 대각선 (전방 + 좌측)
+        Vector3 leftDiagonal = player.transform.forward + -player.transform.right;
+        Vector3 leftSpawnPos = player.transform.position + leftDiagonal.normalized * spawnDistance;
+        GameObject leftObject = Instantiate(objectToSpawn, leftSpawnPos, Quaternion.identity);
+        leftObject.transform.LookAt(transform);
+
+        Vector3 eulerRotation = leftObject.transform.rotation.eulerAngles;
+        eulerRotation.x = 0;  // X축 회전 0으로 설정
+        leftObject.transform.rotation = Quaternion.Euler(eulerRotation);
+
+        // 오른쪽 대각선 (전방 + 우측)
+        Vector3 rightDiagonal = player.transform.forward + player.transform.right;
+        Vector3 rightSpawnPos = player.transform.position + rightDiagonal.normalized * spawnDistance;
+        GameObject rightObject = Instantiate(objectToSpawn, rightSpawnPos, Quaternion.identity);
+        rightObject.transform.LookAt(transform);
+
+        eulerRotation = rightObject.transform.rotation.eulerAngles;
+        eulerRotation.x = 0;  // X축 회전 0으로 설정
+        rightObject.transform.rotation = Quaternion.Euler(eulerRotation);
     }
 }

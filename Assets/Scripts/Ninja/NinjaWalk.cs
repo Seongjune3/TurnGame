@@ -6,7 +6,10 @@ public class NinjaWalk : MonoBehaviour
 {
     public int Speed;
     public int DiagonalSpeed;
+    [HideInInspector]
     public Animator Ani;
+    [HideInInspector]
+    public Rigidbody rb;
     bool isMoving = false;
     public Shoot Shoot;
     private Dictionary<Vector3, string> animationMap = new Dictionary<Vector3, string>();
@@ -14,6 +17,7 @@ public class NinjaWalk : MonoBehaviour
     void Start()
     {
         Ani = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
 
         animationMap[new Vector3(1, 0, 1)] = "Walk Right";  // W + D
         animationMap[new Vector3(-1, 0, 1)] = "Walk Left";   // W + A
@@ -28,8 +32,12 @@ public class NinjaWalk : MonoBehaviour
 
     void Update()
     {
+        CheckKeyborad();
+    }
+
+    void FixedUpdate()
+    {
         Move();
-        CheckKeyborad();;
     }
 
     void Move()
@@ -47,7 +55,8 @@ public class NinjaWalk : MonoBehaviour
         {
             // (? : 설명) 앞에 코드(moveDirection.x != 0 && moveDirection.z != 0) 가 참이면 ? 뒤에 변수로 지정 거짓이라면 : 변수로 지정
             float moveSpeed = (moveDirection.x != 0 && moveDirection.z != 0) ? DiagonalSpeed : Speed;
-            transform.Translate(moveDirection.normalized * moveSpeed * Time.deltaTime);
+            Vector3 localMove = transform.TransformDirection(moveDirection.normalized) * moveSpeed * Time.fixedDeltaTime;
+            rb.MovePosition(rb.position + localMove);
 
             // 애니메이션 변경
             if (animationMap.ContainsKey(moveDirection))
