@@ -14,7 +14,7 @@ public class BlackNinja : MonoBehaviour
     void Start()
     {
         ani.Play("Knife Shot");
-        Destroy(gameObject , 2f);   
+        Destroy(gameObject , 1f);   
     }
 
     

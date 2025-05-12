@@ -5,13 +5,14 @@ using UnityEngine.VFX;
 public class NinjaCSkill : CoolTime
 {
     [SerializeField]
-    bool isUseSkill = false;
+    public bool isUseSkill = false;
     bool isCoolTime = false;
-    bool isHited = false;
+    public bool isHited = false;
     public GameObject player;
     public VisualEffect smokeVFX;
     public GameObject objectToSpawn;
     public float spawnDistance = 2f;
+    public GameObject hitBox;
 
     protected override void UseSkill(SkillCooldown skill)
     {
@@ -21,20 +22,6 @@ public class NinjaCSkill : CoolTime
             StartCoroutine(SkillCoolDown());
             StartCoroutine(ChangeBool());
             StartCoroutine(SkillMove());
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Boss") && isUseSkill && !isHited)
-        {
-            Debug.Log("Boss");
-            isHited = true;
-        }
-        else if (other.gameObject.CompareTag("Dummy") && isUseSkill && !isHited)
-        {
-            Debug.Log("Dummy");
-            isHited = true;
         }
     }
 
@@ -59,9 +46,12 @@ public class NinjaCSkill : CoolTime
         player.tag = "Invisible";
         smokeVFX.Play();
         yield return new WaitForSeconds(1f);
+        hitBox.SetActive(true);
         player.tag = "Player";
         SpawnBlackNinja();
         ani.Play("Knife Shot");
+        yield return new WaitForSeconds(0.5f);
+        hitBox.SetActive(false);
     }
 
     void SpawnBlackNinja()
