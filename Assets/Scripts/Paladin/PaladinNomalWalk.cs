@@ -4,19 +4,30 @@ using System.Collections;
 public class PaladinNomalWalk : MonoBehaviour
 {
     public int Speed;
+    [HideInInspector]
     public Animator Ani;
+    [HideInInspector]
+    public Rigidbody rb;
     public Block Block;
     public bool isAttacking = false;
     private bool isMoving = false;
+    private Vector3 camForward, camRight;
 
     void Start()
     {
         Ani = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
         if (GameManager.Instance.isSkillPlaying || isAttacking) return;
+        camForward = Camera.main.transform.forward;
+        camRight = Camera.main.transform.right;
+        camForward.y = 0;
+        camRight.y = 0;
+        camForward.Normalize();
+        camRight.Normalize();
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -34,9 +45,24 @@ public class PaladinNomalWalk : MonoBehaviour
         {
             Block.isBlocking = false;
         }
-
-        Move();
         CheckKeyboard();
+    }
+
+    void FixedUpdate()
+    {
+        if (GameManager.Instance.isSkillPlaying || isAttacking) return;
+        if (Input.GetMouseButtonDown(0))
+        {
+            StartCoroutine(Attack());
+            return;
+        }
+
+        if (Input.GetMouseButton(1))
+        {
+            UseBlockNow();
+            return;
+        }
+        Move();
     }
 
     void Move()
@@ -63,10 +89,11 @@ public class PaladinNomalWalk : MonoBehaviour
             if (!isMovingBackward)
             {
                 Quaternion toRotation = Quaternion.LookRotation(moveDir);
-                transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, Time.deltaTime * 5f);
+                transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, Time.fixedDeltaTime * 5f);
             }
 
-            transform.Translate(moveDir.normalized * Speed * Time.deltaTime, Space.World);
+            Vector3 localMove = moveDir * Speed * Time.fixedDeltaTime;
+            rb.MovePosition(rb.position + localMove);
             Ani.Play(isMovingBackward ? "Walk Back" : "Walk Forward");
 
             isMoving = true;

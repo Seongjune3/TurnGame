@@ -3,21 +3,36 @@ using UnityEngine;
 public class ArcherNomalWalk : MonoBehaviour
 {
     public int Speed;
+    [HideInInspector]
     public Animator Ani;
+    [HideInInspector]
+    public Rigidbody rb;
     public Bow Bow;
     private bool isMoving = false;
+    private Vector3 camForward, camRight;
 
     void Start()
     {
         Ani = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
         if (GameManager.Instance.isSkillPlaying) return;
+        camForward = Camera.main.transform.forward;
+        camRight = Camera.main.transform.right;
+        camForward.y = 0;
+        camRight.y = 0;
+        camForward.Normalize();
+        camRight.Normalize();
 
-        Move();
         CheckKeyboard();
+    }
+
+    void FixedUpdate()
+    {
+        Move();
     }
 
     void Move()
@@ -49,7 +64,8 @@ public class ArcherNomalWalk : MonoBehaviour
                 transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, Time.deltaTime * 5f);
             }
 
-            transform.Translate(moveDir.normalized * Speed * Time.deltaTime, Space.World);
+            Vector3 localMove = moveDir * Speed * Time.fixedDeltaTime;
+            rb.MovePosition(rb.position + localMove);
 
             // 애니메이션
             string animPrefix = isAiming ? "Aim Walk" : "Walk";

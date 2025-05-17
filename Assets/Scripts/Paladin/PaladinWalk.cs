@@ -7,7 +7,10 @@ public class PaladinWalk : MonoBehaviour
 {
     public int Speed;
     public int DiagonalSpeed;
+    [HideInInspector]
     public Animator Ani;
+    [HideInInspector]
+    public Rigidbody rb;
     public Block Block;
     public bool isAttacking = false;
     private bool isMoving = false;
@@ -24,6 +27,7 @@ public class PaladinWalk : MonoBehaviour
     void Start()
     {
         Ani = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
 
         // 이동 방향과 애니메이션 매핑
         animationMap[new Vector3(1, 0, 1)] = "Walk Right";  // W + D
@@ -57,8 +61,25 @@ public class PaladinWalk : MonoBehaviour
         {
             Block.isBlocking = false;
         }
-        Move();
         CheckKeyboard();
+    }
+
+    void FixedUpdate()
+    {
+        if (GameManager.Instance.isSkillPlaying) return;
+        if (isAttacking) return;
+        if (Input.GetMouseButtonDown(0))
+        {
+            StartCoroutine(Attack());
+            return;
+        }
+
+        if (Input.GetMouseButton(1))
+        {
+            UseBlockNow();
+            return;
+        }
+        Move();
     }
 
     void Move()
@@ -74,7 +95,8 @@ public class PaladinWalk : MonoBehaviour
         {
             // (? : 설명) 앞에 코드(moveDirection.x != 0 && moveDirection.z != 0) 가 참이면 ? 뒤에 변수로 지정 거짓이라면 : 변수로 지정
             float moveSpeed = (moveDirection.x != 0 && moveDirection.z != 0) ? DiagonalSpeed : Speed;
-            transform.Translate(moveDirection.normalized * moveSpeed * Time.deltaTime);
+            Vector3 localMove = transform.TransformDirection(moveDirection.normalized) * moveSpeed * Time.fixedDeltaTime;
+            rb.MovePosition(rb.position + localMove);
 
             // 애니메이션 변경
             if (animationMap.ContainsKey(moveDirection))

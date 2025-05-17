@@ -6,19 +6,27 @@ public class ArcherWalk : MonoBehaviour
 {
     public int Speed;
     public int DiagonalSpeed;
+    [HideInInspector]
     public Animator Ani;
+    [HideInInspector]
+    public Rigidbody rb;
     private bool isMoving = false;
     public Bow Bow;
 
     void Start()
     {
         Ani = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
     {
-        Move();
         CheckKeyboard();
+    }
+
+    void FixedUpdate()
+    {
+        Move();
     }
 
     void Move()
@@ -36,7 +44,8 @@ public class ArcherWalk : MonoBehaviour
         if (moveDirection != Vector3.zero)
         {
             float moveSpeed = (moveDirection.x != 0 && moveDirection.z != 0) ? DiagonalSpeed : Speed;
-            transform.Translate(moveDirection.normalized * moveSpeed * Time.deltaTime);
+            Vector3 localMove = transform.TransformDirection(moveDirection.normalized) * moveSpeed * Time.fixedDeltaTime;
+            rb.MovePosition(rb.position + localMove);
 
             string animCheck = isAiming ? "Aim Walk" : "Walk";
             string animDirection = "Forward";

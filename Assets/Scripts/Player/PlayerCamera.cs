@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
-    [SerializeField] 
+    [SerializeField]
     private Transform target;
-    [SerializeField] 
+    [SerializeField]
     private Vector3 offset = new Vector3(0, 3, -5);
 
     void Start()
@@ -16,7 +16,7 @@ public class PlayerCamera : MonoBehaviour
         }
     }
 
-    void LateUpdate()
+    void FixedUpdate()
     {
         if (target != null)
         {
