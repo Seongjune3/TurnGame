@@ -1,36 +1,30 @@
 using UnityEngine;
+using System.Collections;
 
 public class ThirdSkill : MonoBehaviour
 {
     [SerializeField]
     private Transform BossTransform;
+    [HideInInspector]
+    public Rigidbody rb;
 
     int MoveSpeed = 1;
     bool NowRun = false;
+    bool isHit = false;
 
 
     void Start()
     {
         BossTransform = GameObject.FindWithTag("Boss").transform;
+        rb = GetComponent<Rigidbody>();
     }
 
-    
+
     void Update()
-    {
-        Move();
-    }
-
-    void Move()
     {
         if (GameManager.Instance.UseingThirdSkill && !NowRun)
         {
-            Invoke("ChangeSpeed" , 2f);
-            
-        }
-        else if (GameManager.Instance.UseingThirdSkill && NowRun)
-        {
-            transform.Translate(Vector3.forward * MoveSpeed * Time.deltaTime, Space.Self);
-            MoveSpeed = 1;
+            StartCoroutine(ChangeSpeed());
         }
         else if (!GameManager.Instance.UseingThirdSkill && NowRun)
         {
@@ -38,17 +32,47 @@ public class ThirdSkill : MonoBehaviour
         }
     }
 
-    void ChangeSpeed()
+    void FixedUpdate()
     {
-        MoveSpeed = 10;
+        Move();
+    }
+
+    void Move()
+    {
+        if (GameManager.Instance.UseingThirdSkill && NowRun)
+        {
+            Vector3 localMove = transform.forward * MoveSpeed * Time.fixedDeltaTime;
+            rb.MovePosition(rb.position + localMove);
+            MoveSpeed = 1;
+        }
+    }
+
+    IEnumerator ChangeSpeed()
+    {
+        yield return new WaitForSeconds(2f);
+        MoveSpeed = 5;
         NowRun = true;
     }
 
-    private void OnTriggerEnter(Collider other) 
+    private void OnTriggerEnter(Collider other)
     {
-        if (GameManager.Instance.UseingThirdSkill && other.CompareTag("Player"))
+        if (GameManager.Instance.UseingThirdSkill && other.CompareTag("Player") && !isHit)
         {
             GameManager.Instance.PlayerHp -= 50;
+            isHit = true;
+            StartCoroutine(Hit());
         }
+        else if (GameManager.Instance.UseingThirdSkill == true && other.CompareTag("Blocking") && !isHit)
+        {
+            GameManager.Instance.PlayerHp -= 25;
+            isHit = true;
+            StartCoroutine(Hit());
+        }
+    }
+
+    IEnumerator Hit()
+    {
+        yield return new WaitForSeconds(2f);
+        isHit = false;
     }
 }

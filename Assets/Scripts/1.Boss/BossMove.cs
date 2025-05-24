@@ -12,6 +12,8 @@ public class BossMove : MonoBehaviour
     private float MoveSpeed = 3f;
     [SerializeField]
     private float StopPoint = 1f;
+    [HideInInspector]
+    public Rigidbody rb;
     Animator Ani;
     bool PlayingAni = true;
     bool Roared = false;
@@ -24,12 +26,17 @@ public class BossMove : MonoBehaviour
         Player = GameObject.FindWithTag("Player");
         Target = GameObject.FindWithTag("Player").transform;
         Ani = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
     }
 
 
     void Update()
     {
         Roar();
+    }
+
+    void FixedUpdate()
+    {
         Move();
     }
 
@@ -50,7 +57,8 @@ public class BossMove : MonoBehaviour
                 transform.LookAt(Target);
 
                 // 이동
-                transform.Translate(direction * MoveSpeed * Time.deltaTime, Space.World);
+                Vector3 localMove = direction * MoveSpeed * Time.fixedDeltaTime;
+                rb.MovePosition(rb.position + localMove);
             }
             else if (distance < StopPoint)
             {

@@ -43,6 +43,7 @@ public class PaladinWalk : MonoBehaviour
     void Update()
     {
         if (GameManager.Instance.isSkillPlaying) return;
+        if (!Block.isBlocking) gameObject.tag = "Player";
         if (isAttacking) return;
         
         if (Input.GetMouseButtonDown(0))
@@ -132,10 +133,12 @@ public class PaladinWalk : MonoBehaviour
         {
             Ani.Play("Block");
             Block.isBlocking = true;
+            gameObject.tag = "Blocking";
         }
         else if (Input.GetMouseButtonUp(1) && Block.isBlocking)
         {
             Block.isBlocking = false;
+            gameObject.tag = "Player";
         }
     }
 

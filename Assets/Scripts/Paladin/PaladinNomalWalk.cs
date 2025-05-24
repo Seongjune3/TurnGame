@@ -12,16 +12,25 @@ public class PaladinNomalWalk : MonoBehaviour
     public bool isAttacking = false;
     private bool isMoving = false;
     private Vector3 camForward, camRight;
+    public int myHp;
+    public bool blocked = false;
 
     void Start()
     {
         Ani = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        myHp = GameManager.Instance.PlayerHp;
     }
 
     void Update()
     {
+        if (GameManager.Instance.PlayerHp < myHp && Block.isBlocking)
+        {
+            blocked = true;
+        }
+        myHp = GameManager.Instance.PlayerHp;
         if (GameManager.Instance.isSkillPlaying || isAttacking) return;
+        if (!Block.isBlocking) gameObject.tag = "Player";
         camForward = Camera.main.transform.forward;
         camRight = Camera.main.transform.right;
         camForward.y = 0;
@@ -121,10 +130,16 @@ public class PaladinNomalWalk : MonoBehaviour
         {
             Ani.Play("Block");
             Block.isBlocking = true;
+            gameObject.tag = "Blocking";
+            if (blocked)
+            {
+                Ani.Play("Blocked");
+            }
         }
         else if (Input.GetMouseButtonUp(1) && Block.isBlocking)
         {
             Block.isBlocking = false;
+            gameObject.tag = "Player";
         }
     }
 

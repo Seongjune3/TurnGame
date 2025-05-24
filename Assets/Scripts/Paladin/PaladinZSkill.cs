@@ -7,6 +7,7 @@ public class PaladinZSkill : CoolTime
     bool isUseSkill = false;
     bool isCoolTime = false;
     bool isHited = false;
+    public GameObject trailVFX;
     protected override void UseSkill(SkillCooldown skill)
     {
         if (skill.key == KeyCode.Z && !isCoolTime && !GameManager.Instance.isSkillPlaying)
@@ -15,6 +16,7 @@ public class PaladinZSkill : CoolTime
             StartCoroutine(SkillCoolDown());
             StartCoroutine(ChangeBool());
             ani.Play("Sword Attack");
+            trailVFX.SetActive(true);
         }
     }
 
@@ -43,6 +45,7 @@ public class PaladinZSkill : CoolTime
     {
         isUseSkill = true;
         yield return new WaitForSeconds(2f);
+        trailVFX.SetActive(false);
         GameManager.Instance.isSkillPlaying = false;
         isUseSkill = false;
         isHited = false;
