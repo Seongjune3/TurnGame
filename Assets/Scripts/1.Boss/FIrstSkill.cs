@@ -12,23 +12,23 @@ public class FIrstSkill : MonoBehaviour
 
     void Update()
     {
-        JumpingSkill();
+        
     }
 
-    void JumpingSkill()
+    void OnTriggerEnter(Collider other)
     {
-        if (GameManager.Instance.UseingFirstSkill && !GameManager.Instance.PlayerIsJumping && !isHit)
+        if (GameManager.Instance.UseingFirstSkill && other.CompareTag("Player") && !isHit)
         {
-            GameManager.Instance.PlayerHp -= 75;
+            GameManager.Instance.PlayerHp -= 60;
             isHit = true;
             StartCoroutine(Hit());
         }
-        //else if (GameManager.Instance.UseingFirstSkill == true && other.CompareTag("Blocking") && !isHit)
-        //{
-        //    GameManager.Instance.PlayerHp -= 15;
-        //    isHit = true;
-        //    StartCoroutine(Hit());
-        //}
+        else if (GameManager.Instance.UseingFirstSkill == true && other.CompareTag("Blocking") && !isHit)
+        {
+            GameManager.Instance.PlayerHp -= 30;
+            isHit = true;
+            StartCoroutine(Hit());
+        }
     }
 
     IEnumerator Hit()

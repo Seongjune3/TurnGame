@@ -111,7 +111,7 @@ public class BossMove : MonoBehaviour
                     GameManager.Instance.UseingZeroSkill = true;
                     break;
                 case 1:
-                    Ani.Play("1_JumpingSkill");
+                    Ani.Play("1_Kick");
                     GameManager.Instance.UseingFirstSkill = true;
                     break;
                 case 2:
