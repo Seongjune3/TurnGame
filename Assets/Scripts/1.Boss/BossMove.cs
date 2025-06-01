@@ -11,7 +11,7 @@ public class BossMove : MonoBehaviour
     [SerializeField]
     private float MoveSpeed = 3f;
     [SerializeField]
-    private float StopPoint = 1f;
+    private float StopPoint = 2f;
     [HideInInspector]
     public Rigidbody rb;
     Animator Ani;

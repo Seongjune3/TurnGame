@@ -20,18 +20,18 @@ public class GoToBoss : MonoBehaviour
         {
             if (player.name == "Ninja")
             {
-                var ninjaNomalMove = player.GetComponent<NinjaNomalWalk>();
-                ninjaNomalMove.enabled = true;
+                var ninjaSwitch = player.GetComponent<NinjaWalkSwitch>();
+                ninjaSwitch.ApplyMode();
             }
             else if (player.name == "Paladin")
             {
-                var paladinNomalMove = player.GetComponent<PaladinNomalWalk>();
-                paladinNomalMove.enabled = true;
+                var paladinSwitch = player.GetComponent<PaladinWalkSwitch>();
+                paladinSwitch.ApplyMode();
             }
             else if (player.name == "Archer")
             {
-                var archerNomalMove = player.GetComponent<ArcherNomalWalk>();
-                archerNomalMove.enabled = true;
+                var archerSwitch = player.GetComponent<ArcherWalkSwitch>();
+                archerSwitch.ApplyMode();
             }
         }
     }
