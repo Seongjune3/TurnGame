@@ -10,6 +10,7 @@ TagManager:
   - Wepon
   - Invisible
   - Blocking
+  - Die
   layers:
   - Default
   - TransparentFX

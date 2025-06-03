@@ -24,6 +24,10 @@ public class PaladinWalkSwitch : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.PlayerHp <= 0)
+        {
+            this.enabled = false;
+        }
         if (Input.GetKeyDown(KeyCode.H))
         {
             isActionMode = !isActionMode;

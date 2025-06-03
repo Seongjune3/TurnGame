@@ -24,6 +24,12 @@ public class PaladinNomalWalk : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.PlayerHp <= 0)
+        {
+            Ani.Play("PaladinDeath");
+            this.gameObject.tag = "Die";
+            this.enabled = false;
+        }
         if (GameManager.Instance.PlayerHp < myHp && Block.isBlocking)
         {
             blocked = true;

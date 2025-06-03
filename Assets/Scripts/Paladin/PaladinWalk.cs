@@ -42,6 +42,12 @@ public class PaladinWalk : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.PlayerHp <= 0)
+        {
+            Ani.Play("PaladinDeath");
+            this.gameObject.tag = "Die";
+            this.enabled = false;
+        }
         if (GameManager.Instance.isSkillPlaying) return;
         if (!Block.isBlocking) gameObject.tag = "Player";
         if (isAttacking) return;

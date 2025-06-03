@@ -19,6 +19,12 @@ public class ArcherNomalWalk : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.PlayerHp <= 0)
+        {
+            Ani.Play("ArcherDeath");
+            this.gameObject.tag = "Die";
+            this.enabled = false;
+        }
         if (GameManager.Instance.isSkillPlaying) return;
         camForward = Camera.main.transform.forward;
         camRight = Camera.main.transform.right;

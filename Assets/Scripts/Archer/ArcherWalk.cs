@@ -21,6 +21,12 @@ public class ArcherWalk : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.PlayerHp <= 0)
+        {
+            Ani.Play("ArcherDeath");
+            this.gameObject.tag = "Die";
+            this.enabled = false;
+        }
         CheckKeyboard();
     }
 

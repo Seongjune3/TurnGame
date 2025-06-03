@@ -20,6 +20,12 @@ public class NinjaNomalWalk : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.PlayerHp <= 0)
+        {
+            Ani.Play("NinjaDeath");
+            this.gameObject.tag = "Die";
+            this.enabled = false;
+        }
         if (GameManager.Instance.isSkillPlaying || isAttacking) return;
         camForward = Camera.main.transform.forward;
         camRight = Camera.main.transform.right;

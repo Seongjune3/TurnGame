@@ -32,6 +32,12 @@ public class NinjaWalk : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.PlayerHp <= 0)
+        {
+            Ani.Play("NinjaDeath");
+            this.gameObject.tag = "Die";
+            this.enabled = false;
+        }
         CheckKeyborad();
     }
 

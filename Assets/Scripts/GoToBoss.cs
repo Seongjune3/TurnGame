@@ -16,6 +16,10 @@ public class GoToBoss : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.PlayerHp <= 0)
+        {
+            this.enabled = false;
+        }
         if (!stopMove)
         {
             if (player.name == "Ninja")
