@@ -24414,6 +24414,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1940397669}
   - component: {fileID: 1940397670}
+  - component: {fileID: 1940397671}
   m_Layer: 5
   m_Name: PlayerUi
   m_TagString: Untagged
@@ -24478,6 +24479,19 @@ MonoBehaviour:
     cooldownText: {fileID: 2138031769}
     cooldownTime: 30
     text: {fileID: 115506825}
+--- !u!114 &1940397671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940397668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cacae6852a4ed1469b8f99c89ce2633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathUi: {fileID: 201347048}
 --- !u!1 &1941718996
 GameObject:
   m_ObjectHideFlags: 0
