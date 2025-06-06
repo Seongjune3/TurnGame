@@ -5,6 +5,8 @@ public class StartGame : MonoBehaviour
 {
     public GameObject settingPanel;
     public GameObject startPanel;
+    public GameObject mainPanel;
+    public GameObject chosePlayerPanel;
 
 
 
@@ -22,7 +24,7 @@ public class StartGame : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("Game");
-        Debug.Log("asjaks");
+        mainPanel.SetActive(false);
+        chosePlayerPanel.SetActive(true);
     }
 }
