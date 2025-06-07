@@ -18,6 +18,7 @@ public abstract class PlayerWepon : MonoBehaviour
         if (PlayerItem.Wepon == 1 && !data.WeponBuff)
         {
             data.plusDmg += 50;
+            GameManager.Instance.PlayerHp += 50;
             data.WeponBuff = true;
             ShieldImage.SetActive(true);
             WhiteImage.SetActive(false);
@@ -25,6 +26,7 @@ public abstract class PlayerWepon : MonoBehaviour
         if (PlayerItem.Wepon == 2 && !data.WeponBuff)
         {
             data.plusDmg += 50;
+            GameManager.Instance.PlayerHp += 50;
             data.WeponBuff = true;
             BowImage.SetActive(true);
             WhiteImage.SetActive(false);
@@ -32,6 +34,7 @@ public abstract class PlayerWepon : MonoBehaviour
         if (PlayerItem.Wepon == 3 && !data.WeponBuff)
         {
             data.plusDmg += 50;
+            GameManager.Instance.PlayerHp += 50;
             data.WeponBuff = true;
             SurikenImage.SetActive(true);
             WhiteImage.SetActive(false);

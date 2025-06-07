@@ -25,10 +25,18 @@ public class ZeroSkill : MonoBehaviour
         }
         else if (GameManager.Instance.UseingZeroSkill == true && other.CompareTag("Blocking") && !isHit)
         {
+            GameManager.Instance.blockedNow = true;
             GameManager.Instance.PlayerHp -= 15;
             isHit = true;
             StartCoroutine(Hit());
+            StartCoroutine(UsedBlock());
         }
+    }
+
+    IEnumerator UsedBlock()
+    {
+        yield return new WaitForSeconds(1f);
+        GameManager.Instance.blockedNow = false;
     }
 
     IEnumerator Hit()

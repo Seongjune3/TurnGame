@@ -38,6 +38,7 @@ public class ArcherNomalWalk : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (GameManager.Instance.isSkillPlaying) return;
         Move();
     }
 

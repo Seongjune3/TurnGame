@@ -24,7 +24,7 @@ public class NinjaZSkill : CoolTime
     {
         if (other.gameObject.CompareTag("Boss") && isUseSkill && !isHited)
         {
-            Debug.Log("Boss");
+            GameManager.Instance.FirstBossHp -= 50;
             isHited = true;
         }
         else if (other.gameObject.CompareTag("Dummy") && isUseSkill && !isHited)

@@ -21,7 +21,7 @@ public class BlackNinjaHitBox : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Boss") && ninjaCSkill.isUseSkill && !ninjaCSkill.isHited)
         {
-            Debug.Log("Boss");
+            GameManager.Instance.FirstBossHp -= 50;
             ninjaCSkill.isHited = true;
         }
         else if (other.gameObject.CompareTag("Dummy") && ninjaCSkill.isUseSkill && !ninjaCSkill.isHited)

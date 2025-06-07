@@ -32,14 +32,14 @@ public class ArcherWalk : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (GameManager.Instance.isSkillPlaying) return;
         Move();
     }
 
     void Move()
-    {
-        if (GameManager.Instance.isSkillPlaying) return;
-        
+    {   
         Vector3 moveDirection = Vector3.zero;
+        
         bool isAiming = Bow.isAiming;
 
         if (Input.GetKey(KeyCode.W)) moveDirection += Vector3.forward;

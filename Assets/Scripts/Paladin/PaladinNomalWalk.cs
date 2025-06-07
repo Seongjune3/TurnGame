@@ -14,6 +14,7 @@ public class PaladinNomalWalk : MonoBehaviour
     private Vector3 camForward, camRight;
     public int myHp;
     public bool blocked = false;
+    private bool wasBlockedNow = false;
 
     void Start()
     {
@@ -132,20 +133,34 @@ public class PaladinNomalWalk : MonoBehaviour
     {
         if (isAttacking) return;
 
-        if (Input.GetMouseButton(1) && !Block.isBlocking)
+        bool isRightMouseDown = Input.GetMouseButton(1);
+
+        if (isRightMouseDown && !Block.isBlocking && !GameManager.Instance.blockedNow)
         {
             Ani.Play("Block");
             Block.isBlocking = true;
             gameObject.tag = "Blocking";
-            if (blocked)
+        }
+
+        if (isRightMouseDown && Block.isBlocking)
+        {
+            if (GameManager.Instance.blockedNow && !wasBlockedNow)
             {
                 Ani.Play("Blocked");
+                wasBlockedNow = true;
+            }
+            else if (!GameManager.Instance.blockedNow && wasBlockedNow)
+            {
+                Ani.Play("Block");
+                wasBlockedNow = false;
             }
         }
-        else if (Input.GetMouseButtonUp(1) && Block.isBlocking)
+
+        if (Input.GetMouseButtonUp(1))
         {
             Block.isBlocking = false;
             gameObject.tag = "Player";
+            wasBlockedNow = false;
         }
     }
 

@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     public bool UseingSecondSkill = false;
     public bool UseingThirdSkill = false;
 
-    
+    public bool blockedNow = false;
 
 
     private static GameManager instance = null;
