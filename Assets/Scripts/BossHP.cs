@@ -4,8 +4,8 @@ using UnityEngine.UI;
 public class BossHP : MonoBehaviour
 {
     public Image fillImage;
-    public float maxHealth = 1000f;
-    public float currentHealth = 1000f;
+    public float maxHealth = 1500;
+    public float currentHealth = 1500f;
 
     private float fullWidth;
 

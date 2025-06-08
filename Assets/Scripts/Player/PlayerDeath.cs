@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerDeath : MonoBehaviour
 {
     public GameObject deathUi;
+    public GameObject bossUi;
 
 
     void Start()
@@ -16,6 +17,7 @@ public class PlayerDeath : MonoBehaviour
         if (GameManager.Instance.PlayerHp <= 0)
         {
             deathUi.SetActive(true);
+            bossUi.SetActive(false);
         }
     }
 }

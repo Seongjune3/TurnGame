@@ -25,7 +25,7 @@ public class ArcherWalk : MonoBehaviour
         {
             Ani.Play("ArcherDeath");
             this.gameObject.tag = "Die";
-            this.enabled = false;
+            this.gameObject.SetActive(false);
         }
         CheckKeyboard();
     }

@@ -14,6 +14,8 @@ public class PaladinWalk : MonoBehaviour
     public Block Block;
     public bool isAttacking = false;
     private bool isMoving = false;
+    private bool wasBlockedNow = false;
+    
 
     private Dictionary<Vector3, string> animationMap = new Dictionary<Vector3, string>();
     // Dictionary<변수 , 변수> 변수 이름 
@@ -46,7 +48,7 @@ public class PaladinWalk : MonoBehaviour
         {
             Ani.Play("PaladinDeath");
             this.gameObject.tag = "Die";
-            this.enabled = false;
+            this.gameObject.SetActive(false);
         }
         if (GameManager.Instance.isSkillPlaying) return;
         if (!Block.isBlocking) gameObject.tag = "Player";
@@ -135,16 +137,34 @@ public class PaladinWalk : MonoBehaviour
     {
         if (isAttacking) return;
 
-        if (Input.GetMouseButton(1) && !Block.isBlocking)
+        bool isRightMouseDown = Input.GetMouseButton(1);
+
+        if (isRightMouseDown && !Block.isBlocking && !GameManager.Instance.blockedNow)
         {
             Ani.Play("Block");
             Block.isBlocking = true;
             gameObject.tag = "Blocking";
         }
-        else if (Input.GetMouseButtonUp(1) && Block.isBlocking)
+
+        if (isRightMouseDown && Block.isBlocking)
+        {
+            if (GameManager.Instance.blockedNow && !wasBlockedNow)
+            {
+                Ani.Play("Blocked");
+                wasBlockedNow = true;
+            }
+            else if (!GameManager.Instance.blockedNow && wasBlockedNow)
+            {
+                Ani.Play("Block");
+                wasBlockedNow = false;
+            }
+        }
+
+        if (Input.GetMouseButtonUp(1))
         {
             Block.isBlocking = false;
             gameObject.tag = "Player";
+            wasBlockedNow = false;
         }
     }
 

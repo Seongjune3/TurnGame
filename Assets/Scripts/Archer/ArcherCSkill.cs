@@ -45,7 +45,7 @@ public class ArcherCSkill : CoolTime
         //보스까지의 거리 계산
         Vector3 directionToBoss = (bow.Boss.transform.position - bow.FirePos.position).normalized;
         Vector3 directionToDummy = (bow.Dummy.transform.position - bow.FirePos.position).normalized;
-        if (!bow.shoted && Vector3.Distance(bow.Boss.transform.position, bow.FirePos.transform.position) <= 25)
+        if (Vector3.Distance(bow.Boss.transform.position, bow.FirePos.transform.position) <= 25)
         {
             //보스를 바라보게 회전
             Quaternion lookRotation = Quaternion.LookRotation(directionToBoss);
@@ -62,7 +62,7 @@ public class ArcherCSkill : CoolTime
             Bow.isDummy = false;
         }
 
-        if (!bow.shoted && Vector3.Distance(bow.Dummy.transform.position, bow.FirePos.transform.position) <= 25)
+        if (Vector3.Distance(bow.Dummy.transform.position, bow.FirePos.transform.position) <= 25)
         {
             //더미를 바라보게 회전
             Quaternion lookRotation = Quaternion.LookRotation(directionToDummy);

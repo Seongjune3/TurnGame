@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public bool PlayerIsComming = false;
     
 
-    public int FirstBossHp = 3000;
+    public int FirstBossHp = 1500;
     public int SecondBossHp = 4500;
     public int PlayerHp = 500;
 

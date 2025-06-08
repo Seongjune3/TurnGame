@@ -21,23 +21,39 @@ public class BossMove : MonoBehaviour
     int LastUsedPattern = -1;
 
 
+
     void Start()
     {
         Player = GameObject.FindWithTag("Player");
         Target = GameObject.FindWithTag("Player").transform;
         Ani = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        gameObject.transform.position = new Vector3(-0.7796557f, 0.06f, 1.204853f);
     }
 
 
     void Update()
     {
         Roar();
+        BossDeath();
     }
 
     void FixedUpdate()
     {
         Move();
+    }
+
+    void BossDeath()
+    {
+        if (GameManager.Instance.FirstBossHp <= 0)
+        {
+            Ani.Play("BossDeath");
+            GameManager.Instance.UseingZeroSkill = false;
+            GameManager.Instance.UseingFirstSkill = false;
+            GameManager.Instance.UseingSecondSkill = false;
+            GameManager.Instance.UseingThirdSkill = false;
+            this.enabled = false;
+        }
     }
 
     void Move()

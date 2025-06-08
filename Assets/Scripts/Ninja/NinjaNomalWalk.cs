@@ -24,7 +24,7 @@ public class NinjaNomalWalk : MonoBehaviour
         {
             Ani.Play("NinjaDeath");
             this.gameObject.tag = "Die";
-            this.enabled = false;
+            this.gameObject.SetActive(false);
         }
         if (GameManager.Instance.isSkillPlaying || isAttacking) return;
         camForward = Camera.main.transform.forward;

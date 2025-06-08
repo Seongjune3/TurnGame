@@ -36,7 +36,7 @@ public class NinjaWalk : MonoBehaviour
         {
             Ani.Play("NinjaDeath");
             this.gameObject.tag = "Die";
-            this.enabled = false;
+            this.gameObject.SetActive(false);
         }
         CheckKeyborad();
     }

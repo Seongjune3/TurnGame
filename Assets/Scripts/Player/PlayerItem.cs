@@ -10,7 +10,7 @@ public class PlayerItem : MonoBehaviour
 
     void Start()
     {
-        
+        Wepon = 0;
     }
     
     
