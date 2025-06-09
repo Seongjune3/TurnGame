@@ -814,6 +814,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 608925195}
   m_CullTransparentMesh: 1
+--- !u!1 &672901933
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 672901935}
+  - component: {fileID: 672901934}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &672901934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672901933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 479443bafa796454bb21de05b560ab8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayArcher: 0
+  PlayPaladin: 0
+  PlayNinja: 0
+  isSkillPlaying: 0
+  PlayerIsJumping: 0
+  PlayerIsComming: 0
+  FirstBossHp: 1500
+  SecondBossHp: 1500
+  PlayerHp: 500
+  PlayerMoney: 500
+  UseingZeroSkill: 0
+  UseingFirstSkill: 0
+  UseingSecondSkill: 0
+  UseingThirdSkill: 0
+  blockedNow: 0
+--- !u!4 &672901935
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 672901933}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &677364453
 GameObject:
   m_ObjectHideFlags: 0
@@ -2073,65 +2132,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79642186abac6ea49a429888f83e7b49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1474181590
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1474181592}
-  - component: {fileID: 1474181591}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1474181591
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1474181590}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 479443bafa796454bb21de05b560ab8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayArcher: 0
-  PlayPaladin: 0
-  PlayNinja: 0
-  isSkillPlaying: 0
-  PlayerIsJumping: 0
-  PlayerIsComming: 0
-  FirstBossHp: 1500
-  SecondBossHp: 1500
-  PlayerHp: 500
-  PlayerMoney: 500
-  UseingZeroSkill: 0
-  UseingFirstSkill: 0
-  UseingSecondSkill: 0
-  UseingThirdSkill: 0
-  blockedNow: 0
---- !u!4 &1474181592
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1474181590}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1622622804
 GameObject:
   m_ObjectHideFlags: 0
@@ -3499,4 +3499,4 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 1952669114}
   - {fileID: 741732898}
-  - {fileID: 1474181592}
+  - {fileID: 672901935}
